@@ -3,7 +3,7 @@ pipeline {
         stages {
                 stage ("pull code from github"){
                         steps{
-               git branch: 'master', url: ''
+               git branch: 'master', url: 'https://github.com/Dharmendrasingh9760/nodejs-helloword.git'
                         }
                 }
                
