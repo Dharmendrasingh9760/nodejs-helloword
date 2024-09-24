@@ -17,7 +17,21 @@ pipeline {
                 stage ("Testing the Build"){
                         steps{
                                 sh 'sudo docker run -dit --name node-js -p 4000:4000 node-hello:latest'
+                                
                         }
                 }
-        }
-}
+
+                
+                stage('Remove Old Containers and Images') {
+                steps {
+                script {
+                    sh '''
+                    sudo docker stop alphatech-admin || true
+                    sudo docker rm alphatech-admin || true
+                    '''
+                    sh '''
+                    sudo docker rmi rahul9664/alphatech-admin:latest || true
+                    '''
+                 }
+            }
+        }               
