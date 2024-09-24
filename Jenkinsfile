@@ -6,6 +6,19 @@ pipeline {
                git branch: 'master', url: 'https://github.com/Dharmendrasingh9760/nodejs-helloword.git'
                         }
                 }
+                stage('Remove Old Containers and Images') {
+                    steps {
+                      script {
+                    sh '''
+                    sudo docker stop node-js  || true
+                    sudo docker rm node-js || true
+                    '''
+                    sh '''
+                    sudo docker rmi node-hello:latest || true
+                    '''
+                }
+            }
+        }
                
             
                 stage ("Building docker image"){
@@ -21,17 +34,6 @@ pipeline {
                         }
                 }
 
-                
-                stage('Remove Old Containers and Images') {
-                steps {
-                script {
-                    sh '''
-                    sudo docker stop alphatech-admin || true
-                    sudo docker rm alphatech-admin || true
-                    '''
-                    sh '''
-                    sudo docker rmi rahul9664/alphatech-admin:latest || true
-                    '''
-                 }
-            }
-        }               
+
+        }
+}
