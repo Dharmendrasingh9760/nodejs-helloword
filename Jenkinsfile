@@ -29,7 +29,7 @@ pipeline {
                 
                 stage ("Testing the Build"){
                         steps{
-                                sh 'sudo docker run -dit --name node-js -p 4000:4000 node-hello:latest'
+                                sh 'sudo docker run -dit --name node-js -p 4000:4001 node-hello:latest'
                                 
                         }
                 }
